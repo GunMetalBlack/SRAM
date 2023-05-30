@@ -9,7 +9,8 @@ public class PlayerNetwork : NetworkBehaviour
     new PlayerData
     {
         IsPlayerTurn = true,
-        Energy = 30,
+        Energy = 0,
+        Health = 0,
 
     },NetworkVariableReadPermission.Everyone,NetworkVariableWritePermission.Owner);
 
@@ -19,10 +20,13 @@ public class PlayerNetwork : NetworkBehaviour
         public bool IsPlayerTurn;
         public int Energy;
 
+        public int Health;
+
         public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
         {
            serializer.SerializeValue(ref IsPlayerTurn);
            serializer.SerializeValue(ref Energy);
+           serializer.SerializeValue(ref Health);
         }
     }
     //Cringe Network Update
@@ -30,8 +34,18 @@ public class PlayerNetwork : NetworkBehaviour
     {
         NetworkPlayerData.OnValueChanged += (PlayerData oldValue, PlayerData newValue) =>
         {
-            Debug.Log(OwnerClientId + ": Network, Value: " + newValue.IsPlayerTurn + "; " + newValue.Energy);
+             Debug.Log(OwnerClientId + ": Old Network, Value: " + oldValue.IsPlayerTurn + "; " + oldValue.Energy + "; " + oldValue.Health);
+            Debug.Log(OwnerClientId + ": Network, Value: " + newValue.IsPlayerTurn + "; " + newValue.Energy + "; " + newValue.Health);
         };
+        if(IsOwner)
+        {
+            NetworkPlayerData.Value = new PlayerData
+            {
+               IsPlayerTurn = false,
+               Energy = 20,
+               Health = 100,
+            };
+        }
     }
 
 
@@ -43,9 +57,9 @@ public class PlayerNetwork : NetworkBehaviour
         {
             NetworkPlayerData.Value = new PlayerData
             {
-               IsPlayerTurn = false,
+               IsPlayerTurn = true,
                Energy = 20,
-
+               Health = 100,
             };
         }
         
