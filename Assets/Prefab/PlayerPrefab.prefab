@@ -62,6 +62,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0598669b924b864e8e5ccb87c59bc92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackDefendTextMesh: {fileID: 7102789332167336037}
 --- !u!1 &5819492599014487550
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,7 +198,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -367, y: -110.499985}
+  m_AnchoredPosition: {x: 0, y: 50}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &7102789330297443678
@@ -663,7 +664,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 40.6651}
+  m_AnchoredPosition: {x: 0, y: 83.8}
   m_SizeDelta: {x: 739.51, y: 95.1421}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7102789331744445611
