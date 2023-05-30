@@ -21,7 +21,8 @@ public class PlayerNetwork : NetworkBehaviour
 
         public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
         {
-            throw new System.NotImplementedException();
+           serializer.SerializeValue(ref IsPlayerTurn);
+           serializer.SerializeValue(ref Energy);
         }
     }
     //Cringe Network Update
