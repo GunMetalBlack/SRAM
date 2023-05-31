@@ -10,7 +10,7 @@ public class PlayerNetwork : NetworkBehaviour
     //Some Scetch Vars For UI
     [SerializeField] TextMeshProUGUI attackDefendTextMesh;
     // Creates network variable for the player data with readable everyone and Only server and Owner Can Edit
-    private NetworkVariable<PlayerData> NetworkPlayerData = new NetworkVariable<PlayerData> (
+     public NetworkVariable<PlayerData> NetworkPlayerData = new NetworkVariable<PlayerData> (
     new PlayerData
     {
         Energy = 0,

@@ -6,22 +6,31 @@ using TMPro;
 
 public class PlayerNetworkManager : NetworkBehaviour
 {
+    public GameObject[] Players;
+    public static PlayerNetworkManager instance;
     //Uber Cursed Script Grab
-    GameObject HostPlayer = GameObject.FindGameObjectWithTag("PlayerHost");
+    private void Update()
+    {
+       if(Players.Length < 2){Players = GameObject.FindGameObjectsWithTag("Player");}
+    }
     private NetworkVariable<bool> NetworkPlayerTurn = new NetworkVariable<bool>(false,NetworkVariableReadPermission.Everyone,NetworkVariableWritePermission.Owner);
     public override void OnNetworkSpawn(){
+        //Kills Any Instance of PlayerNetworkManager thats not the current
+        if(instance != null && instance != this){Destroy(this);} 
+        // Find the players then split them from each script
+        Players = GameObject.FindGameObjectsWithTag("Player");
+        PlayerNetwork hostPlayer = Players[0].GetComponent<PlayerNetwork>();
+        PlayerNetwork clientPlayer = Players[1].GetComponent<PlayerNetwork>();
         //Cursed Player Data Swapping Test
         NetworkPlayerTurn.OnValueChanged += (bool wasTurn, bool IsTurn)=>
         {
             if(IsTurn)
             {
-                PlayerAttackClientRpc(new ClientRpcParams{Send = new ClientRpcSendParams{TargetClientIds = new List<ulong>{0}}});
-                PlayerDefenseClientRpc(new ClientRpcParams{Send = new ClientRpcSendParams{TargetClientIds = new List<ulong>{1}}});
+                hostPlayer.NetworkPlayerData.Value;
             }
             else
             {
-                PlayerAttackClientRpc(new ClientRpcParams{Send = new ClientRpcSendParams{TargetClientIds = new List<ulong>{1}}});
-                PlayerDefenseClientRpc(new ClientRpcParams{Send = new ClientRpcSendParams{TargetClientIds = new List<ulong>{0}}});
+             
             }
         };
     }
@@ -29,16 +38,5 @@ public class PlayerNetworkManager : NetworkBehaviour
     private void PlayerTurnServerRpc(bool IsTurn)
     {
         NetworkPlayerTurn.Value = IsTurn;
-    }
-
-    [ClientRpc]
-    private void PlayerDefenseClientRpc(ClientRpcParams clientRpcParams)
-    {
-        attackDefendTextMesh.text = "Defend";
-    }
-    [ClientRpc]
-    private void PlayerAttackClientRpc(ClientRpcParams clientRpcParams)
-    {
-        attackDefendTextMesh.text = "Attack";
     }
 }
