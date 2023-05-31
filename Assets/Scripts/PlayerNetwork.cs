@@ -45,7 +45,9 @@ public class PlayerNetwork : NetworkBehaviour
         NetworkPlayerData.OnValueChanged += (PlayerData oldValue, PlayerData newValue) =>
         {
              Debug.Log(OwnerClientId + ": Old Network, Value: " +  "; " + oldValue.Energy + "; " + oldValue.Health);
-            Debug.Log(OwnerClientId + ": Network, Value: " + "; " + newValue.Energy + "; " + newValue.Health);
+             Debug.Log(OwnerClientId + ": Network, Value: " + "; " + newValue.Energy + "; " + newValue.Health);
+             Debug.Log(newValue.AttackDefendText.ToString());
+             attackDefendTextMesh.text = newValue.AttackDefendText.ToString();
         };
         
         //Cursed On Init Values
@@ -56,17 +58,22 @@ public class PlayerNetwork : NetworkBehaviour
             {
                Energy = 20,
                Health = 100,
+               AttackDefendText = "",
             };
         }
     }
-
+    // A grabber Network Object to Send From server
+ 
+    public void PlayerDataSet(FixedString32Bytes value)
+    {
+        NetworkPlayerData.Value = new PlayerData{AttackDefendText = value};
+    }
 
     // Update is called once per frame
     void Update()
     {
         if(!IsOwner) return;
-        // No Shame Please
-        attackDefendTextMesh.text = NetworkPlayerData.Value.AttackDefendText.ToString();
+       
         //Test Code For client to Network Player Data
         if(Input.GetKeyDown(KeyCode.T))
         {

@@ -14,28 +14,36 @@ public class PlayerNetworkManager : NetworkBehaviour
        if(Players.Length < 2){Players = GameObject.FindGameObjectsWithTag("Player");}
     }
     private NetworkVariable<bool> NetworkPlayerTurn = new NetworkVariable<bool>(false,NetworkVariableReadPermission.Everyone,NetworkVariableWritePermission.Owner);
-    public override void OnNetworkSpawn(){
+    public override void OnNetworkSpawn()
+    {
         //Kills Any Instance of PlayerNetworkManager thats not the current
         if(instance != null && instance != this){Destroy(this);} 
         // Find the players then split them from each script
         Players = GameObject.FindGameObjectsWithTag("Player");
-        PlayerNetwork hostPlayer = Players[0].GetComponent<PlayerNetwork>();
-        PlayerNetwork clientPlayer = Players[1].GetComponent<PlayerNetwork>();
-        //Cursed Player Data Swapping Test
-        NetworkPlayerTurn.OnValueChanged += (bool wasTurn, bool IsTurn)=>
+        if(Players.Length == 1)
         {
-            if(IsTurn)
+            var client = NetworkManager.ConnectedClients[0];
+            var host = client.PlayerObject.GetComponent<PlayerNetwork>();
+            PlayerTurnServerRpc(true);
+            //Cursed Player Data Swapping Test
+            NetworkPlayerTurn.OnValueChanged += (bool wasTurn, bool IsTurn)=>
             {
-                hostPlayer.NetworkPlayerData.Value;
-            }
-            else
-            {
-             
-            }
-        };
+                if(IsTurn)
+                {
+                    Debug.Log("Test player ");
+                    host.PlayerDataSet("Attack");
+                   
+                }
+                else
+                {
+                    host.PlayerDataSet("Defense");
+                    
+                }
+            };
+        }
     }
     [ServerRpc]
-    private void PlayerTurnServerRpc(bool IsTurn)
+    public void PlayerTurnServerRpc(bool IsTurn)
     {
         NetworkPlayerTurn.Value = IsTurn;
     }
