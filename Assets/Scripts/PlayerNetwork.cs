@@ -15,7 +15,7 @@ public class PlayerNetwork : NetworkBehaviour
     {
         Energy = 0,
         Health = 0,
-        AttackDefendText = "",
+        GameState = 0,
 
     },NetworkVariableReadPermission.Everyone,NetworkVariableWritePermission.Owner);
 
@@ -28,26 +28,32 @@ public class PlayerNetwork : NetworkBehaviour
 
         public int Health;
 
-        public FixedString32Bytes AttackDefendText;
+        public int GameState;
 
         public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
         {
            serializer.SerializeValue(ref Energy);
            serializer.SerializeValue(ref Health);
-           serializer.SerializeValue(ref AttackDefendText);
+           serializer.SerializeValue(ref GameState);
         }
     }
     //Cringe Network Update
     public override void OnNetworkSpawn()
     {
-
+ 
         //Update Player Data Networking
         NetworkPlayerData.OnValueChanged += (PlayerData oldValue, PlayerData newValue) =>
         {
-             Debug.Log(OwnerClientId + ": Old Network, Value: " +  "; " + oldValue.Energy + "; " + oldValue.Health);
+             //Todo Do all of the Player Update Stuff In here Please
              Debug.Log(OwnerClientId + ": Network, Value: " + "; " + newValue.Energy + "; " + newValue.Health);
-             Debug.Log(newValue.AttackDefendText.ToString());
-             attackDefendTextMesh.text = newValue.AttackDefendText.ToString();
+             if(newValue.GameState == 1)
+             {
+                attackDefendTextMesh.text = "Attack";
+             }else
+             {
+                attackDefendTextMesh.text = "Defense";
+             }
+
         };
         
         //Cursed On Init Values
@@ -58,22 +64,16 @@ public class PlayerNetwork : NetworkBehaviour
             {
                Energy = 20,
                Health = 100,
-               AttackDefendText = "",
+               GameState = 0,
             };
         }
-    }
-    // A grabber Network Object to Send From server
- 
-    public void PlayerDataSet(FixedString32Bytes value)
-    {
-        NetworkPlayerData.Value = new PlayerData{AttackDefendText = value};
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!IsOwner) return;
-       
+        
+
         //Test Code For client to Network Player Data
         if(Input.GetKeyDown(KeyCode.T))
         {
@@ -86,7 +86,11 @@ public class PlayerNetwork : NetworkBehaviour
         
     }
     
-
+    public void setGameState(int state)
+    {
+        if(!IsOwner) return;
+         NetworkPlayerData.Value = new PlayerData{GameState = state,};
+    }
 
 }
 
