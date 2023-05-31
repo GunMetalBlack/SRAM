@@ -63,6 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDefendTextMesh: {fileID: 7102789332167336037}
+  Canvas: {fileID: 5819492599014487550}
 --- !u!1 &5819492599014487550
 GameObject:
   m_ObjectHideFlags: 0
@@ -1209,14 +1210,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 17.64
+  m_fontSize: 18
   m_fontSizeBase: 17.64
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0

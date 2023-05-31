@@ -10,17 +10,39 @@ public class PlayerNetworkManager : NetworkBehaviour
     //Uber Cursed Script Grab
 
     bool Init = true;
-    private void Update()
-    {
 
-
-    }
     public override void OnNetworkSpawn()
     {
         //Kills Any Instance of PlayerNetworkManager thats not the current
         if (instance != null && instance != this) { Destroy(this); }
-        //Cursed Player Data Swapping Test
-        PlayerUpdateTurnServerRpc();
+        //Cursed Init Host Game State
+        if(NetworkManager.IsHost)
+        {
+            PlayerUpdateTurnServerRpc();
+        }
+        //Sets the current Host and Game State
+        PlayerUpdateTurnClientRpc();
+    }
+
+    [ClientRpc]
+    public void PlayerUpdateTurnClientRpc()
+    {
+        if(NetworkManager.ConnectedClients.ContainsKey(1))
+        {
+            var client = NetworkManager.ConnectedClients[1];
+            var clientPlayerNetwork = client.PlayerObject.GetComponent<PlayerNetwork>();
+            
+            var host = NetworkManager.ConnectedClients[0];
+            var hostPlayerNetwork = host.PlayerObject.GetComponent<PlayerNetwork>();
+            if(hostPlayerNetwork.NetworkPlayerData.Value.GameState == 0)
+            {
+                clientPlayerNetwork.setGameState(1);
+            }
+            else if(hostPlayerNetwork.NetworkPlayerData.Value.GameState == 1)
+            {
+                clientPlayerNetwork.setGameState(0);
+            }
+        }
     }
 
     [ServerRpc]
