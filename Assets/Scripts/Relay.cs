@@ -69,6 +69,7 @@ public class Relay : MonoBehaviour
             );
             NetworkManager.Singleton.StartClient();
             NetUI.SetActive(false);
+            joinCodeTextInput.gameObject.SetActive(false);
         }
         catch (RelayServiceException e) { Debug.Log(e);  }
     }
