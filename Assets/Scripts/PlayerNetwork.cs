@@ -90,6 +90,11 @@ public class PlayerNetwork : NetworkBehaviour
 
     }
 
+    [ServerRpc]
+    public void HelloWorldServerRpc(){
+        Debug.Log("HelloWorldServerRpc; Owner:"+ OwnerClientId );
+    }
+
     public void setGameState(int state)
     {
         if (IsOwner){

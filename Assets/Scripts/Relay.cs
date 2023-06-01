@@ -40,8 +40,7 @@ public class Relay : MonoBehaviour
                (ushort)allocation.RelayServer.Port,
                allocation.AllocationIdBytes,
                allocation.Key,
-               allocation.ConnectionData,
-               true
+               allocation.ConnectionData
             );
             NetworkManager.Singleton.StartHost();
             NetUI.SetActive(false);
@@ -52,6 +51,7 @@ public class Relay : MonoBehaviour
     }
     public void setJoinCode(){
         JoinCodeFromInput = joinCodeTextInput.text;
+        JoinCodeFromInput = JoinCodeFromInput.Substring(0, 6);
         Debug.Log("Join Code: " + JoinCodeFromInput);
     }
     public async void JoinRelay()
