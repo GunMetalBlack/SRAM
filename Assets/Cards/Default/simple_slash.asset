@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 260bb8224c8bf9540bcd4a098106ba44, type: 3}
-  m_Name: BasicAttack
+  m_Name: simple_slash
   m_EditorClassIdentifier: 
   CardName: Simple Slash
   Description: A simple Attack
