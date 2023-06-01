@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CardName: Simple Slash
   Description: A simple Attack
-  Artwork: {fileID: 0}
-  EnergyCost: 0
+  Artwork: {fileID: 21300000, guid: ce019eb90dd48d94491006df2de7f471, type: 3}
+  EnergyCost: 1
   StatusEffect: 0
-  isAttack: 0
-  Damage: 0
-  AttackAmount: 
+  isAttack: 1
+  Damage: 2
+  AttackAmount: 0

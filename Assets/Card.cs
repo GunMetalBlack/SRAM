@@ -12,6 +12,6 @@ public class Card : ScriptableObject
     public int StatusEffect;
     public bool isAttack;
     public int Damage;
-    public string AttackAmount;
+    public int AttackAmount;
 
 }
