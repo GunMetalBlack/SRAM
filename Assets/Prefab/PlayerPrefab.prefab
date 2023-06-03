@@ -468,6 +468,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDefendTextMesh: {fileID: 7102789332167336037}
+  PlayerGraphicCards:
+  - {fileID: 6826056403555109325}
+  - {fileID: 1907344054699770443}
+  - {fileID: 8514165510133082972}
   Canvas: {fileID: 5819492599014487550}
 --- !u!1 &5277025204975083102
 GameObject:
@@ -1161,7 +1165,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2602364989057042114}
         m_TargetAssemblyTypeName: PlayerNetwork, Assembly-CSharp
-        m_MethodName: HelloWorldServerRpc
+        m_MethodName: changeTurnServerRpc
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1435,11 +1439,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: CardObject (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 9176382547920643145, guid: 14818f5daccc8514788d5ba2253955a9, type: 3}
+      propertyPath: card
+      value: 
+      objectReference: {fileID: 11400000, guid: b175b87fe76a47b4b8110cd1b2d0f6b5, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14818f5daccc8514788d5ba2253955a9, type: 3}
 --- !u!224 &1749507793607070794 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 418610651070459471, guid: 14818f5daccc8514788d5ba2253955a9, type: 3}
+  m_PrefabInstance: {fileID: 2128148989387078149}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8514165510133082972 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7755427605110100313, guid: 14818f5daccc8514788d5ba2253955a9, type: 3}
   m_PrefabInstance: {fileID: 2128148989387078149}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3826888098151028884
@@ -1537,11 +1550,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: CardObject
       objectReference: {fileID: 0}
+    - target: {fileID: 9176382547920643145, guid: 14818f5daccc8514788d5ba2253955a9, type: 3}
+      propertyPath: card
+      value: 
+      objectReference: {fileID: 11400000, guid: b175b87fe76a47b4b8110cd1b2d0f6b5, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14818f5daccc8514788d5ba2253955a9, type: 3}
 --- !u!224 &3518686077563549403 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 418610651070459471, guid: 14818f5daccc8514788d5ba2253955a9, type: 3}
+  m_PrefabInstance: {fileID: 3826888098151028884}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6826056403555109325 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7755427605110100313, guid: 14818f5daccc8514788d5ba2253955a9, type: 3}
   m_PrefabInstance: {fileID: 3826888098151028884}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8203569637528294162
@@ -1639,8 +1661,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: CardObject (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 9176382547920643145, guid: 14818f5daccc8514788d5ba2253955a9, type: 3}
+      propertyPath: card
+      value: 
+      objectReference: {fileID: 11400000, guid: b175b87fe76a47b4b8110cd1b2d0f6b5, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14818f5daccc8514788d5ba2253955a9, type: 3}
+--- !u!1 &1907344054699770443 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7755427605110100313, guid: 14818f5daccc8514788d5ba2253955a9, type: 3}
+  m_PrefabInstance: {fileID: 8203569637528294162}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &8365395856281714013 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 418610651070459471, guid: 14818f5daccc8514788d5ba2253955a9, type: 3}

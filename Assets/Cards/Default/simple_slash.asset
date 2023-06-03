@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 260bb8224c8bf9540bcd4a098106ba44, type: 3}
   m_Name: simple_slash
   m_EditorClassIdentifier: 
-  CardName: Simple Slash
+  CardName: Slash
   Description: A simple Attack
   Artwork: {fileID: 21300000, guid: ce019eb90dd48d94491006df2de7f471, type: 3}
   EnergyCost: 1
-  StatusEffect: 0
+  StatusEffect: Basic
   isAttack: 1
   Damage: 2
   AttackAmount: 0

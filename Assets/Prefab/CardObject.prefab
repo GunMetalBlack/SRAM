@@ -577,10 +577,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   card: {fileID: 0}
-  Name: {fileID: 0}
-  CardArt: {fileID: 0}
-  Effect: {fileID: 0}
-  Stat: {fileID: 0}
+  Name: {fileID: 411845256299695801}
+  CardArt: {fileID: 7425366165194641225}
+  Effect: {fileID: 4782092815500962922}
+  Stat: {fileID: 2164764795351401145}
+  Cost: {fileID: 8568766541338076755}
 --- !u!1 &7934473256713932378
 GameObject:
   m_ObjectHideFlags: 0

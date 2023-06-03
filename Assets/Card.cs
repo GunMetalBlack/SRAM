@@ -9,7 +9,7 @@ public class Card : ScriptableObject
     public string Description;
     public Sprite Artwork;
     public int EnergyCost;
-    public int StatusEffect;
+    public string StatusEffect;
     public bool isAttack;
     public int Damage;
     public int AttackAmount;
