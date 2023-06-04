@@ -457,6 +457,8 @@ MonoBehaviour:
   - {fileID: 1907344054699770443}
   - {fileID: 8514165510133082972}
   Canvas: {fileID: 5819492599014487550}
+  playerNetworkData2: {fileID: 0}
+  Player2: []
 --- !u!114 &4222393940090886621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1165,7 +1167,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2602364989057042114}
         m_TargetAssemblyTypeName: PlayerNetwork, Assembly-CSharp
-        m_MethodName: changeTurnServerRpc
+        m_MethodName: endTurn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
